@@ -1,0 +1,90 @@
+<html>
+  <head>
+	<title>Fantasy RPG Database</title>
+
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="./main.js"></script>
+  </head>
+<body>
+    <div class="navigationbar">
+	  <a href='/index.html'>Home</a>
+	  <a class="active" href='/characters'>Characters </a>
+      <a href='/factions'>Factions </a></li>
+      <a href='/party'>Parties </a>
+      <a href='/quest-party'>Quests and Parties </a>
+       <a href='/quests'>Quests </a>
+    </div>
+	<br>
+<h3>Add/Edit/Delete Characters:</h3>
+<form id="addcharacter" action="/characters" method="post">
+    Frist Name: <input type="text" name="fname"><br>
+    Last Name: <input type="text" name="lname"><br>
+    Armor(Type, Slashing defense, Piercing defense, bludegoning defense): <input type="text" name="type"><br><input type="number" name="slashing_def"><input type="number" name="piercing_def"><input type="number" name="bludegeoning_def"><br>
+    Weapon: <input type="text" name="weapon"><br>
+    Class: <select name="class"> 
+        {{#each class}}
+        <option value="{{id}}">{{type}}</option>
+        {{/each}}
+    </select><br>
+    Faction: <select name="faction"> 
+        {{#each faction}}
+        <option value="{{id}}">{{name}}</option>
+        {{/each}}
+    </select><br>
+    Party: <select name="party"> 
+        {{#each party}}
+        <option value="{{id}}">{{name}}</option>
+        {{/each}}
+    </select><br>
+    <input type="submit" value="Submit">
+ </form>
+<br/>
+
+<form id='filter_characters' action='' method=''>
+<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label> Filter by party </label>
+    <select id='party_filter' name="party"> 
+        {{#each party}}
+        <option value="{{id}}">{{name}}</option>
+        {{/each}}
+    </select><br>
+    <input type="button" value="Filter" onclick="filterCharactersParty()">
+</form>
+
+<form id='search_characters' action='' method=''>
+<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label> Search for characters with first names starting with:</label>
+    <input id='first_name_search_string' type='text' name='first_name_search_string' value=''>
+    <input type="button" value="Search" onclick="searchCharactersByFirstName()">
+</form>
+
+
+
+<h3>Current characters:</h3>
+<table>
+    <thead> 
+        <th>First Name</th> 
+        <th>Last Name</th> 
+        <th>Armor</th>
+        <th>Weapon</th>  
+        <th>Class</th>  
+        <th>Faction</th>  
+        <th>Party</th> 
+
+    </thead> 
+    <tbody>
+        {{#each characters}} 
+        <tr> 
+            <td>{{fname}}</td>
+            <td>{{lname}}</td>  
+            <td>{{armor}}</td> 
+            <td>{{weapon}}</td>
+            <td>{{class}}</td>
+            <td>{{faction}}</td>
+            <td>{{party}}</td>
+            <td><button onclick="deleteCharacter({{id}})">Delete</button></td>
+        </tr> 
+        {{/each}} 
+    </tbody> 
+</table> 
+</html>

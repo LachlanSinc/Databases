@@ -1,0 +1,48 @@
+<html>
+  
+	<head>
+	<title>Fantasy RPG Database</title>
+
+    
+  </head>
+<body>
+    <div class="navigationbar">
+	  <a href='/index.html'>Home</a>
+	  <a href='/characters'>Characters </a>
+      <a href='/factions'>Factions </a>
+      <a class="active" href='/party'>Parties </a>
+      <a href='/quest-party'>Quests and Parties </a>
+       <a href='/quests'>Quests </a>
+    </div>
+	<br>
+<h3>Add a Party:</h3>
+<form id="addFaction" action="/party" method="post">
+    Name: <input type="text" name="name"><br>
+    Faction: <select name="faction"> 
+        {{#each faction}}
+        <option value="{{id}}">{{name}}</option>
+        {{/each}}
+    <input type="submit" value="Submit">
+ </form>
+<br/>
+
+<h3>Current Parties:</h3>
+<table>
+    <thead> 
+        <th>Name</th> 
+        <th>Faction</th> 
+
+    </thead> 
+    <tbody>
+        {{#each party}} 
+        <tr> 
+            <td>{{name}}</td> 
+            <td>{{faction}}</td> 
+        </tr> 
+        <td><button onclick="deleteParty({{id}})">Delete</button></td>
+        <td><a href="/party/{{id}}">Update</a></td>
+        {{/each}} 
+    </tbody> 
+</table> 
+<link href="style.css" rel="stylesheet" type="text/css" />
+</html>

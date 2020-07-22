@@ -1,0 +1,14 @@
+<html>
+<h1>Update {{party.name}}:</h1>
+<form id="update-party" action="/party" method="post">
+    Name: <input type="text" name="name" value="{{party.name}}"><br>
+    Faction: <select name="faction" id="faction-selector"> 
+    {{#each faction}}
+        <option value="{{id}}">{{name}}</option>        
+    {{/each}}
+    <option value="NULL">NULL</option>
+    </select><br>
+</form>
+<button onclick="updateParty({{party.id}})">Update</button>
+<script defer>selectfaction({{party.faction_id}});</script>
+</html>

@@ -1,0 +1,53 @@
+<html>
+
+  <head>
+	<title>Fantasy RPG Database</title>
+
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="./main.js"></script>
+  </head>
+<body>
+    <div class="navigationbar">
+	  <a href='/index.html'>Home</a>
+	  <a href='/characters'>Characters </a>
+      <a href='/factions'>Factions </a></li>
+      <a href='/party'>Parties </a>
+      <a class="active" href='/quest-party'>Quests and Parties </a>
+       <a href='/quests'>Quests </a>
+    </div>
+	<br>
+
+<h3>Add a Quest to a Party:</h3>
+<form id="addQuestParty" action="/quest-party" method="post">
+    Quest: <select name="quest"> 
+        {{#each quest}}
+        <option value="{{id}}">{{name}}</option>
+        {{/each}}
+        </select><br>
+    Party: <select name="party"> 
+        {{#each party}}
+        <option value="{{id}}">{{name}}</option>
+        {{/each}}
+        </select><br>
+    <input type="submit" value="Submit">
+ </form>
+<br/>
+
+<h3>Quest and Parties it is assigned to:</h3>
+<table>
+    <thead> 
+        <th>Quest</th> 
+        <th>Party</th> 
+
+    </thead> 
+    <tbody>
+        {{#each questparty}} 
+        <tr> 
+            <td>{{quest}}</td> 
+            <td>{{party}}</td> 
+        </tr> 
+        <td><button onclick="deleteQuestParty({{qid}}, {{pid}})">Delete</button></td>
+        {{/each}} 
+    </tbody> 
+</table> 
+</html>
